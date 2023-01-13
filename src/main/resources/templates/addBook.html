@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>도서 등록</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" th:href="@{/home}">Home</a>
+    </div>
+  </div>
+</nav>
+<div class="py-5 text-center container">
+  <div class="col-lg col-md-8 mx-auto">
+    <h1 class="fw-light">도서 등록</h1>
+  </div>
+</div>
+<div class="container py-5 bg-light">
+  <form class="form-horizontal" th:action="@{/BookMarket/books/add}" th:object="${NewBook}" method="post">
+    <div class="col-md-7 col-lg-8">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label th:for="bookId" class="form-label">도서 ID</label>
+            <input type="text" th:field="*{bookId}" class="form-control" required>
+            <div class="invalid-feedback">
+              Valid Book ID is required.
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label th:for="name" class="form-label">도서명</label>
+            <input type="text" th:field="*{name}" class="form-control" required>
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label th:for="unitPrice" class="form-label">가격</label>
+            <div class="input-group has-validation">
+              <input type="number" th:field="*{unitPrice}" class="form-control" required>
+              <div class="invalid-feedback">
+                Your unitPrice is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label th:for="author" class="form-label">저자</label>
+            <input type="text" th:field="*{author}" class="form-control" required>
+            <div class="invalid-feedback">
+              Author is required.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label th:for="description" class="form-label">상세정보</label>
+            <textarea class="form-control" th:field="*{description}" rows="5" required></textarea>
+            <div class="invalid-feedback">
+              Description is required;
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label th:for="publisher" class="form-label">출판사</label>
+            <input type="text" class="form-control" th:field="*{publisher}" required>
+            <div class="invalid-feedback">
+              Publisher is required;
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label th:for="category" class="form-label">분야</label>
+            <input type="text" class="form-control" th:field="*{category}" required>
+            <div class="invalid-feedback">
+              Category is required;
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label th:for="unitsInStock" class="form-label">재고수</label>
+            <input type="text" class="form-control" th:field="*{unitInStock}" required>
+            <div class="invalid-feedback">
+              UnitsInStock is required;
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label th:for="releaseDate" class="form-label">출판일</label>
+            <input type="date" class="form-control" th:field="*{releaseDate}" required>
+            <div class="invalid-feedback">
+              ReleaseDate is required;
+            </div>
+          </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <h4 class="mb-3">상태</h4>
+
+        <div class="my-3">
+          <div class="form-check">
+            <input id="New" type="radio" th:field="*{condition}" class="form-check-input" value="New" checked required>
+            <label class="form-check-label" for="New">신상품</label>
+          </div>
+          <div class="form-check">
+            <input id="Old" type="radio" th:field="*{condition}" class="form-check-input" value="Old" required>
+            <label class="form-check-label" for="Old">중고 상품</label>
+          </div>
+          <div class="form-check">
+            <input id="E-Book" type="radio" th:field="*{condition}" class="form-check-input" value="E-Book" required>
+            <label class="form-check-label" for="E-Book">E-Book</label>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">등록</button>
+    </div>
+  </form>
+</div>
+<footer class="container">
+  <hr>
+  <p>&copy; WebMarket</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (() => {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+</body>
+</html>

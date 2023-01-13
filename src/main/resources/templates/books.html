@@ -28,6 +28,8 @@
           <p th:text="${book.publisher} + ' | ' + ${book.releaseDate}">
           <p class="text-center" th:text="${#strings.substring(book.description, 0, 100)} + '...'">
           <p th:text="${book.unitPrice} + ' 원'">
+          <p><a th:href="@{books/book(id=${book.bookId})}">
+            <button type="button" class="btn btn-primary">상세 정보</button></a>
         </p>
     </div>
   </div>
